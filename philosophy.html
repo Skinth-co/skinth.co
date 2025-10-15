@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Philosophy - Skinth.co</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero {
+            background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80') no-repeat center center;
+        }
+        
+        .philosophy-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .philosophy-detail p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .principle-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .principle-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">SKINTH.CO</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="philosophy.html">Philosophy</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Philosophy Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>OUR PHILOSOPHY</h1>
+            <p>The principles that guide everything we create</p>
+        </div>
+    </section>
+
+    <!-- Philosophy Content -->
+    <section class="philosophy">
+        <div class="container">
+            <div class="philosophy-detail">
+                <p>"True luxury is not about excess, but about precision. It is found in the perfect formulation, the ethically sourced ingredient, the minimalist design that speaks volumes. At Skinth.co, we believe that skincare should be an experience of pure efficacy and sensory delight."</p>
+                
+                <p>Our philosophy is built on the foundation that less is more. We strip away the unnecessary, focusing only on what truly benefits your skin. Every ingredient must earn its place in our formulations through proven efficacy and sustainable sourcing.</p>
+                
+                <p>We believe luxury skincare should be accessible in its simplicity yet profound in its results. This balance defines our approach to creating products that not only perform exceptionally but also bring joy to your daily routine.</p>
+            </div>
+
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h3>Purity First</h3>
+                    <p>We use only the purest, most effective ingredients, rigorously tested for safety and performance.</p>
+                </div>
+                <div class="principle-card">
+                    <h3>Sustainable Beauty</h3>
+                    <p>Every ingredient is ethically sourced with respect for people and the planet.</p>
+                </div>
+                <div class="principle-card">
+                    <h3>Science & Nature</h3>
+                    <p>We blend cutting-edge scientific research with time-tested natural ingredients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Skinth.co</h3>
+                    <p>Luxury skincare formulations for the discerning individual.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="products.html">Serums</a></li>
+                        <li><a href="products.html">Creams</a></li>
+                        <li><a href="products.html">Cleansers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <p>Subscribe for exclusive offers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Skinth.co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
