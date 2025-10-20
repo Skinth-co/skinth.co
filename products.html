@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Skinth.co</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
     <style>
         .page-hero {
-            background: url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1760&q=80') no-repeat center center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1760&q=80') no-repeat center center;
+            background-size: cover;
+            padding-top: 80px;
+            height: calc(60vh - 80px);
         }
         
         .product-categories {
@@ -31,9 +36,54 @@
             background: var(--black);
             color: var(--white);
         }
+        
+        .product-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            transition: transform 0.7s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+        
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--black);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -59,7 +109,7 @@
 
     <!-- Products Hero -->
     <section class="page-hero">
-        <div class="page-hero-content">
+        <div class="page-hero-content" data-aos="fade-up" data-aos-duration="1000">
             <h1>THE COLLECTION</h1>
             <p>Luxury formulations for radiant, healthy skin</p>
         </div>
@@ -68,7 +118,7 @@
     <!-- Products Section -->
     <section class="products">
         <div class="container">
-            <div class="product-categories">
+            <div class="product-categories" data-aos="fade-up">
                 <button class="category-btn active">All Products</button>
                 <button class="category-btn">Serums</button>
                 <button class="category-btn">Creams</button>
@@ -76,43 +126,61 @@
             </div>
             
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-image product-1"></div>
+                    <div class="product-overlay">
+                        <a href="#" class="btn">Quick View</a>
+                    </div>
                     <h3>Luminous Serum</h3>
                     <p>A potent blend of vitamin C and rare botanical extracts to brighten and even skin tone.</p>
                     <div class="price">$185</div>
                     <a href="#" class="btn">Add to Cart</a>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="product-image product-2"></div>
+                    <div class="product-overlay">
+                        <a href="#" class="btn">Quick View</a>
+                    </div>
                     <h3>Renewal Cream</h3>
                     <p>Our signature moisturizer with advanced peptides to firm and hydrate mature skin.</p>
                     <div class="price">$220</div>
                     <a href="#" class="btn">Add to Cart</a>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="product-image product-3"></div>
+                    <div class="product-overlay">
+                        <a href="#" class="btn">Quick View</a>
+                    </div>
                     <h3>Purifying Cleanser</h3>
                     <p>A gentle yet effective cleanser that removes impurities without stripping the skin.</p>
                     <div class="price">$95</div>
                     <a href="#" class="btn">Add to Cart</a>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="product-image product-1"></div>
+                    <div class="product-overlay">
+                        <a href="#" class="btn">Quick View</a>
+                    </div>
                     <h3>Overnight Elixir</h3>
                     <p>Intensive overnight treatment to repair and rejuvenate while you sleep.</p>
                     <div class="price">$195</div>
                     <a href="#" class="btn">Add to Cart</a>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="product-image product-2"></div>
+                    <div class="product-overlay">
+                        <a href="#" class="btn">Quick View</a>
+                    </div>
                     <h3>Eye Contour Cream</h3>
                     <p>Targeted treatment for delicate eye area to reduce puffiness and dark circles.</p>
                     <div class="price">$165</div>
                     <a href="#" class="btn">Add to Cart</a>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="700">
                     <div class="product-image product-3"></div>
+                    <div class="product-overlay">
+                        <a href="#" class="btn">Quick View</a>
+                    </div>
                     <h3>Clarifying Toner</h3>
                     <p>Alcohol-free toner to balance pH and refine skin texture.</p>
                     <div class="price">$85</div>
@@ -126,11 +194,11 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up">
                     <h3>Skinth.co</h3>
                     <p>Luxury skincare formulations for the discerning individual.</p>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
                     <h3>Shop</h3>
                     <ul>
                         <li><a href="products.html">All Products</a></li>
@@ -139,7 +207,7 @@
                         <li><a href="products.html">Cleansers</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
                     <h3>Information</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
@@ -148,7 +216,7 @@
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
                     <h3>Connect</h3>
                     <p>Subscribe for exclusive offers.</p>
                     <div class="social-links">
@@ -164,8 +232,14 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Mobile Menu Toggle
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -173,10 +247,16 @@
             navLinks.classList.toggle('active');
         });
 
-        // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
+            
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const trackLength = docHeight - winHeight;
+            const progress = Math.floor((scrollTop / trackLength) * 100);
+            document.getElementById('loadingBar').style.width = progress + '%';
         });
 
         // Category buttons
@@ -185,6 +265,27 @@
                 document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
             });
+        });
+
+        // Product card hover effects
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+            });
+        });
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
