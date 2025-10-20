@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Philosophy - Skinth.co</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
     <style>
         .page-hero {
-            background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80') no-repeat center center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80') no-repeat center center;
+            background-size: cover;
+            padding-top: 80px;
+            height: calc(60vh - 80px);
         }
         
         .philosophy-detail {
@@ -33,15 +38,34 @@
         .principle-card {
             text-align: center;
             padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-10px);
         }
         
         .principle-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
+        
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--black);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -67,7 +91,7 @@
 
     <!-- Philosophy Hero -->
     <section class="page-hero">
-        <div class="page-hero-content">
+        <div class="page-hero-content" data-aos="fade-up" data-aos-duration="1000">
             <h1>OUR PHILOSOPHY</h1>
             <p>The principles that guide everything we create</p>
         </div>
@@ -76,24 +100,24 @@
     <!-- Philosophy Content -->
     <section class="philosophy">
         <div class="container">
-            <div class="philosophy-detail">
+            <div class="philosophy-detail" data-aos="fade-up" data-aos-delay="200">
                 <p>"True luxury is not about excess, but about precision. It is found in the perfect formulation, the ethically sourced ingredient, the minimalist design that speaks volumes. At Skinth.co, we believe that skincare should be an experience of pure efficacy and sensory delight."</p>
                 
-                <p>Our philosophy is built on the foundation that less is more. We strip away the unnecessary, focusing only on what truly benefits your skin. Every ingredient must earn its place in our formulations through proven efficacy and sustainable sourcing.</p>
+                <p data-aos="fade-up" data-aos-delay="400">Our philosophy is built on the foundation that less is more. We strip away the unnecessary, focusing only on what truly benefits your skin. Every ingredient must earn its place in our formulations through proven efficacy and sustainable sourcing.</p>
                 
-                <p>We believe luxury skincare should be accessible in its simplicity yet profound in its results. This balance defines our approach to creating products that not only perform exceptionally but also bring joy to your daily routine.</p>
+                <p data-aos="fade-up" data-aos-delay="600">We believe luxury skincare should be accessible in its simplicity yet profound in its results. This balance defines our approach to creating products that not only perform exceptionally but also bring joy to your daily routine.</p>
             </div>
 
             <div class="principles-grid">
-                <div class="principle-card">
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Purity First</h3>
                     <p>We use only the purest, most effective ingredients, rigorously tested for safety and performance.</p>
                 </div>
-                <div class="principle-card">
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="400">
                     <h3>Sustainable Beauty</h3>
                     <p>Every ingredient is ethically sourced with respect for people and the planet.</p>
                 </div>
-                <div class="principle-card">
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="600">
                     <h3>Science & Nature</h3>
                     <p>We blend cutting-edge scientific research with time-tested natural ingredients.</p>
                 </div>
@@ -105,11 +129,11 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up">
                     <h3>Skinth.co</h3>
                     <p>Luxury skincare formulations for the discerning individual.</p>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
                     <h3>Shop</h3>
                     <ul>
                         <li><a href="products.html">All Products</a></li>
@@ -118,7 +142,7 @@
                         <li><a href="products.html">Cleansers</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
                     <h3>Information</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
@@ -127,7 +151,7 @@
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
                     <h3>Connect</h3>
                     <p>Subscribe for exclusive offers.</p>
                     <div class="social-links">
@@ -143,8 +167,14 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Mobile Menu Toggle
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -152,10 +182,24 @@
             navLinks.classList.toggle('active');
         });
 
-        // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
+            
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const trackLength = docHeight - winHeight;
+            const progress = Math.floor((scrollTop / trackLength) * 100);
+            document.getElementById('loadingBar').style.width = progress + '%';
+        });
+
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
