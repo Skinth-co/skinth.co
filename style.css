@@ -226,32 +226,51 @@ header.scrolled {
     background-color: var(--white);
     padding: 2rem;
     text-align: center;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .product-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* UPDATED PRODUCT IMAGE STYLING */
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    margin-bottom: 1.5rem;
 }
 
 .product-image {
     width: 100%;
-    height: 300px;
-    background-color: var(--gray-light);
-    margin-bottom: 1.5rem;
-    background-size: cover;
-    background-position: center;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
 }
 
-.product-1 {
-    background-image: url('https://images.unsplash.com/photo-1556228578-6d3d8de5d8a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+.product-card:hover .product-image {
+    transform: scale(1.1);
 }
 
-.product-2 {
-    background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.product-3 {
-    background-image: url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80');
+.product-card:hover .product-overlay {
+    opacity: 1;
 }
 
 .product-card h3 {
@@ -267,6 +286,33 @@ header.scrolled {
 .price {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* Product Categories */
+.product-categories {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: none;
+    border: 1px solid var(--black);
+    color: var(--black);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: var(--black);
+    color: var(--white);
 }
 
 /* Philosophy Section */
@@ -326,6 +372,7 @@ header.scrolled {
     border: 1px solid var(--gray-medium);
     font-family: inherit;
     font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
 .form-group input:focus,
@@ -433,6 +480,18 @@ footer {
     z-index: 1;
 }
 
+/* Loading Bar */
+.loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--black);
+    z-index: 9999;
+    transition: width 0.3s ease;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 992px) {
     h1 {
@@ -450,6 +509,10 @@ footer {
     
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .product-image-container {
+        height: 350px;
     }
 }
 
@@ -501,6 +564,21 @@ footer {
     .contact {
         padding: 5rem 0;
     }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .product-image-container {
+        height: 300px;
+    }
+    
+    .category-btn {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
 }
 
 @media (max-width: 576px) {
@@ -520,5 +598,17 @@ footer {
     .page-hero {
         height: calc(40vh - 60px); /* Further adjustment for small screens */
         padding-top: 60px; /* Further adjustment for small screens */
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-card {
+        padding: 1.5rem;
+    }
+    
+    .product-image-container {
+        height: 250px;
     }
 }
