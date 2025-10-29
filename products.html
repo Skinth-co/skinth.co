@@ -78,6 +78,167 @@
             z-index: 9999;
             transition: width 0.3s ease;
         }
+
+        /* Quick View Popup Styles */
+        .quick-view-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .quick-view-popup.active {
+            display: flex;
+        }
+
+        .popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-container {
+            position: relative;
+            background: var(--white);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            z-index: 10000;
+            animation: popupFadeIn 0.3s ease;
+        }
+
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+            z-index: 10001;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .popup-close:hover {
+            color: var(--gold);
+        }
+
+        .popup-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 3rem;
+        }
+
+        .popup-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .popup-details h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .popup-details h2:after {
+            display: none;
+        }
+
+        .popup-price {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .popup-description {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .popup-features {
+            margin-bottom: 2rem;
+        }
+
+        .popup-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .popup-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .popup-features li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .popup-actions .btn {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .popup-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+            
+            .popup-image {
+                height: 300px;
+            }
+            
+            .popup-details h2 {
+                font-size: 1.5rem;
+            }
+            
+            .popup-actions {
+                flex-direction: column;
+            }
+            
+            .popup-actions .btn {
+                min-width: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -96,13 +257,6 @@
                     <li><a href="philosophy.html">Philosophy</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="nav-icons">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
-                </div>
-                <div class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
             </nav>
         </div>
     </header>
@@ -114,81 +268,108 @@
             <p>Luxury formulations for radiant, healthy skin</p>
         </div>
     </section>
-
-    <!-- Products Section -->
-    <section class="products">
-        <div class="container">
-            <div class="product-categories" data-aos="fade-up">
-                <button class="category-btn active">All Products</button>
-                <button class="category-btn">Serums</button>
-                <button class="category-btn">Creams</button>
-                <button class="category-btn">Cleansers</button>
-            </div>
             
             <div class="products-grid">
+                <!-- Product 1: Clyra -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-image product-1"></div>
-                    <div class="product-overlay">
-                        <a href="#" class="btn">Quick View</a>
+                    <div class="product-image-container">
+                        <img src="Clyra/hydrating-toner-6oz-1.jpg" alt="Clyra Toner" class="product-image">
+                        <div class="product-overlay">
+                            <a href="#" class="btn quick-view-btn" data-product="clyra">Quick View</a>
+                        </div>
                     </div>
-                    <h3>Luminous Serum</h3>
-                    <p>A potent blend of vitamin C and rare botanical extracts to brighten and even skin tone.</p>
-                    <div class="price">$185</div>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <h3>Clyra</h3>
+                    <p>A refreshing, fragrance-free toner that hydrates, soothes, and balances the skin for a revitalized complexion.</p>
+                    <div class="price">$57</div>
+                    <a href="https://www.instagram.com/skinthco/" class="btn">Pre-Order (DM INSTA)</a>
                 </div>
+
+                <!-- Product 2: Premier -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="product-image product-2"></div>
-                    <div class="product-overlay">
-                        <a href="#" class="btn">Quick View</a>
+                    <div class="product-image-container">
+                        <img src="Premier/daily-moisturizer-17oz-1.jpg" alt="Premier Moisturizer" class="product-image">
+                        <div class="product-overlay">
+                            <a href="#" class="btn quick-view-btn" data-product="premier">Quick View</a>
+                        </div>
                     </div>
-                    <h3>Renewal Cream</h3>
-                    <p>Our signature moisturizer with advanced peptides to firm and hydrate mature skin.</p>
-                    <div class="price">$220</div>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <h3>Premier</h3>
+                    <p>A luxurious daily moisturizer that deeply hydrates and nourishes, leaving skin soft, supple, and radiant.</p>
+                    <div class="price">$54</div>
+                    <a href="https://www.instagram.com/skinthco/" class="btn">Pre-Order (DM INSTA)</a>
                 </div>
+
+                <!-- Product 3: Vela -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="product-image product-3"></div>
-                    <div class="product-overlay">
-                        <a href="#" class="btn">Quick View</a>
+                    <div class="product-image-container">
+                        <img src="Vela/gentle-face-and-body-cleanser-6oz-1.jpg" alt="Vela Cleanser" class="product-image">
+                        <div class="product-overlay">
+                            <a href="#" class="btn quick-view-btn" data-product="vela">Quick View</a>
+                        </div>
                     </div>
-                    <h3>Purifying Cleanser</h3>
-                    <p>A gentle yet effective cleanser that removes impurities without stripping the skin.</p>
-                    <div class="price">$95</div>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <h3>Vela</h3>
+                    <p>A balanced, fragrance-free cleanser for face and body that removes excess oil while maintaining moisture.</p>
+                    <div class="price">$52</div>
+                    <a href="https://www.instagram.com/skinthco/" class="btn">Pre-Order (DM INSTA)</a>
                 </div>
+
+                <!-- Product 4: Noctura -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="product-image product-1"></div>
-                    <div class="product-overlay">
-                        <a href="#" class="btn">Quick View</a>
+                    <div class="product-image-container">
+                        <img src="Noctura/retinol-and-peptide-face-serum-1oz-1.jpg" alt="Noctura Serum" class="product-image">
+                        <div class="product-overlay">
+                            <a href="#" class="btn quick-view-btn" data-product="noctura">Quick View</a>
+                        </div>
                     </div>
-                    <h3>Overnight Elixir</h3>
-                    <p>Intensive overnight treatment to repair and rejuvenate while you sleep.</p>
-                    <div class="price">$195</div>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <h3>Noctura</h3>
+                    <p>A rejuvenating night serum that combines retinol and peptides to smooth, firm, and refine skin texture.</p>
+                    <div class="price">$89</div>
+                    <a href="https://www.instagram.com/skinthco/" class="btn">Pre-Order (DM INSTA)</a>
                 </div>
+
+                <!-- Product 5: Hydrène -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="product-image product-2"></div>
-                    <div class="product-overlay">
-                        <a href="#" class="btn">Quick View</a>
+                    <div class="product-image-container">
+                        <img src="Hydrene/hyaluronic-acid-complex-serum-1oz-1.jpg" alt="Hydrène Serum" class="product-image">
+                        <div class="product-overlay">
+                            <a href="#" class="btn quick-view-btn" data-product="hydrene">Quick View</a>
+                        </div>
                     </div>
-                    <h3>Eye Contour Cream</h3>
-                    <p>Targeted treatment for delicate eye area to reduce puffiness and dark circles.</p>
-                    <div class="price">$165</div>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <h3>Hydrène</h3>
+                    <p>A fast-absorbing, long-lasting serum that deeply hydrates and plumps the skin with multi-molecular hyaluronic acid.</p>
+                    <div class="price">$108</div>
+                    <a href="https://www.instagram.com/skinthco/" class="btn">Pre-Order (DM INSTA)</a>
                 </div>
+
+                <!-- Product 6: Package A -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="700">
-                    <div class="product-image product-3"></div>
-                    <div class="product-overlay">
-                        <a href="#" class="btn">Quick View</a>
+                    <div class="product-image-container">
+                        <img src="REPLACE_WITH_PACKAGE_A_IMAGE_URL" alt="Package A Bundle" class="product-image">
+                        <div class="product-overlay">
+                            <a href="#" class="btn quick-view-btn" data-product="packageA">Quick View</a>
+                        </div>
                     </div>
-                    <h3>Clarifying Toner</h3>
-                    <p>Alcohol-free toner to balance pH and refine skin texture.</p>
-                    <div class="price">$85</div>
-                    <a href="#" class="btn">Add to Cart</a>
+                    <h3>Package A</h3>
+                    <p>A three-step luxury routine that cleanses, hydrates, and renews for a smooth, radiant complexion.</p>
+                    <div class="price">$175</div>
+                    <a href="https://www.instagram.com/skinthco/" class="btn">Pre-Order (DM INSTA)</a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Quick View Popup -->
+    <div class="quick-view-popup" id="quickViewPopup">
+        <div class="popup-overlay" id="popupOverlay"></div>
+        <div class="popup-container">
+            <button class="popup-close" id="popupClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="popup-content">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -240,6 +421,169 @@
             offset: 100
         });
 
+        // Product data
+        const products = {
+            clyra: {
+                name: "Clyra",
+                price: "$57",
+                image: "Clyra/hydrating-toner-6oz-1.jpg",
+                description: "A refreshing, fragrance-free toner that hydrates, soothes, and balances the skin for a revitalized complexion.",
+                features: [
+                    "Hydrates and soothes skin",
+                    "Fragrance-free formula",
+                    "Balances skin pH levels",
+                    "Suitable for all skin types",
+                    "Alcohol-free"
+                ],
+                preorder: true,
+                preorderLink: "https://www.instagram.com/skinthco/"
+            },
+            premier: {
+                name: "Premier",
+                price: "$54",
+                image: "Premier/daily-moisturizer-17oz-1.jpg",
+                description: "A luxurious daily moisturizer that deeply hydrates and nourishes, leaving skin soft, supple, and radiant.",
+                features: [
+                    "Deeply hydrates skin",
+                    "Non-greasy formula",
+                    "24-hour moisture lock",
+                    "With hyaluronic acid",
+                    "For daily use"
+                ],
+                preorder: true,
+                preorderLink: "https://www.instagram.com/skinthco/"
+            },
+            vela: {
+                name: "Vela",
+                price: "$52",
+                image: "Vela/gentle-face-and-body-cleanser-6oz-1.jpg",
+                description: "A balanced, fragrance-free cleanser for face and body that removes excess oil while maintaining moisture.",
+                features: [
+                    "Gentle daily cleanser",
+                    "Maintains skin moisture",
+                    "Fragrance-free",
+                    "For face and body",
+                    "pH balanced"
+                ],
+                preorder: true,
+                preorderLink: "https://www.instagram.com/skinthco/"
+            },
+            noctura: {
+                name: "Noctura",
+                price: "$89",
+                image: "Noctura/retinol-and-peptide-face-serum-1oz-1.jpg",
+                description: "A rejuvenating night serum that combines retinol and peptides to smooth, firm, and refine skin texture.",
+                features: [
+                    "Overnight renewal",
+                    "With retinol & peptides",
+                    "Improves skin texture",
+                    "Firming action",
+                    "For mature skin"
+                ],
+                preorder: true,
+                preorderLink: "https://www.instagram.com/skinthco/"
+            },
+            hydrene: {
+                name: "Hydrène",
+                price: "$108",
+                image: "Hydrene/hyaluronic-acid-complex-serum-1oz-1.jpg",
+                description: "A fast-absorbing, long-lasting serum that deeply hydrates and plumps the skin with multi-molecular hyaluronic acid.",
+                features: [
+                    "Multi-molecular hyaluronic acid",
+                    "Fast absorbing",
+                    "Long-lasting hydration",
+                    "Plumps skin",
+                    "For all skin types"
+                ],
+                preorder: true,
+                preorderLink: "https://www.instagram.com/skinthco/"
+            },
+            packageA: {
+                name: "Package A",
+                price: "$175",
+                image: "REPLACE_WITH_PACKAGE_A_IMAGE_URL",
+                description: "A three-step luxury routine that cleanses, hydrates, and renews for a smooth, radiant complexion.",
+                features: [
+                    "Complete 3-step routine",
+                    "Includes Vela Cleanser",
+                    "Includes Clyra Toner", 
+                    "Includes Premier Moisturizer",
+                    "Save 15% vs buying separately"
+                ],
+                preorder: true,
+                preorderLink: "https://www.instagram.com/skinthco/"
+            }
+        };
+
+        // Quick View Functionality
+        const quickViewPopup = document.getElementById('quickViewPopup');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupClose = document.getElementById('popupClose');
+        const popupContent = document.querySelector('.popup-content');
+
+        function openQuickView(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            const popupHTML = `
+                <div class="popup-image-container">
+                    <img src="${product.image}" alt="${product.name}" class="popup-image">
+                </div>
+                <div class="popup-details">
+                    <h2>${product.name}</h2>
+                    <div class="popup-price">${product.price}</div>
+                    <p class="popup-description">${product.description}</p>
+                    
+                    <div class="popup-features">
+                        <ul>
+                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="popup-actions">
+                        ${product.preorder ? 
+                            `<a href="${product.preorderLink}" class="btn" target="_blank">Pre-Order Now</a>` : 
+                            `<a href="#" class="btn">Add to Cart</a>`
+                        }
+                    </div>
+                </div>
+            `;
+            
+            popupContent.innerHTML = popupHTML;
+            quickViewPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            quickViewPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event Listeners for Quick View
+        popupOverlay.addEventListener('click', closeQuickView);
+        popupClose.addEventListener('click', closeQuickView);
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQuickView();
+            }
+        });
+
+        // Add click events to Quick View buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+            
+            quickViewButtons.forEach((button) => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.getAttribute('data-product');
+                    openQuickView(productId);
+                });
+            });
+        });
+
+        // Your existing JavaScript
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
